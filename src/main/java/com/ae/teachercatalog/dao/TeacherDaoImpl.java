@@ -1,7 +1,9 @@
 package com.ae.teachercatalog.dao;
 
 import com.ae.teachercatalog.model.Teacher;
+import com.ae.teachercatalog.model.TeacherSocialMedia;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class TeacherDaoImpl extends AbstractSession implements TeacherDao {
@@ -20,6 +22,13 @@ public class TeacherDaoImpl extends AbstractSession implements TeacherDao {
     public void deleteTeacher(Long idTeacher) {
         final Teacher teacher = (Teacher) findTeacherById(idTeacher);
         if (teacher != null) {
+            Iterator<TeacherSocialMedia> iterator = teacher.getTeachersSocialMedia().iterator();
+            while (iterator.hasNext()) {
+                TeacherSocialMedia teacherSocialMedia = iterator.next();
+                iterator.remove();
+                getSession().delete(teacherSocialMedia);
+            }
+            teacher.getTeachersSocialMedia().clear();
             getSession().delete(teacher);
         }
     }
