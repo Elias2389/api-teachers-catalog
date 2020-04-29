@@ -17,4 +17,6 @@ public interface CourseDao {
     Course findCourserByName(final String name);
 
     Course findCourseById(final Long idCourse);
+
+    List<Course> findCourseByIdTeacher(final Long idTeacher);
 }
