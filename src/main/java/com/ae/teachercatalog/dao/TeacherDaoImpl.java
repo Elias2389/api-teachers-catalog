@@ -7,7 +7,7 @@ import java.util.List;
 public class TeacherDaoImpl extends AbstractSession implements TeacherDao {
 
     @Override
-    public void saveTeacher(Teacher teacher) {
+    public void saveTeacher(final Teacher teacher) {
         getSession().persist(teacher);
     }
 
@@ -18,26 +18,26 @@ public class TeacherDaoImpl extends AbstractSession implements TeacherDao {
 
     @Override
     public void deleteTeacher(Long idTeacher) {
-        Teacher teacher = (Teacher) findTeacherById(idTeacher);
+        final Teacher teacher = (Teacher) findTeacherById(idTeacher);
         if (teacher != null) {
             getSession().delete(teacher);
         }
     }
 
     @Override
-    public void updateTeacher(Teacher teacher) {
+    public void updateTeacher(final Teacher teacher) {
         getSession().update(teacher);
     }
 
     @Override
-    public Teacher findTeacherByName(String name) {
+    public Teacher findTeacherByName(final String name) {
         return (Teacher) getSession()
                 .createQuery("from Teacher where name = :name")
                 .setParameter("name", name).uniqueResult();
     }
 
     @Override
-    public Teacher findTeacherById(Long idTeacher) {
+    public Teacher findTeacherById(final Long idTeacher) {
         return (Teacher) getSession().get(Teacher.class, idTeacher);
     }
 }
