@@ -2,10 +2,14 @@ package com.ae.teachercatalog.dao;
 
 import com.ae.teachercatalog.model.Teacher;
 import com.ae.teachercatalog.model.TeacherSocialMedia;
+import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.Iterator;
 import java.util.List;
 
+@Repository
+@Transactional
 public class TeacherDaoImpl extends AbstractSession implements TeacherDao {
 
     @Override

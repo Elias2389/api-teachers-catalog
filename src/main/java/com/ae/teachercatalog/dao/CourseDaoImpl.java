@@ -1,9 +1,13 @@
 package com.ae.teachercatalog.dao;
 
 import com.ae.teachercatalog.model.Course;
+import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Repository
+@Transactional
 public class CourseDaoImpl extends AbstractSession implements CourseDao {
     @Override
     public void saveCourse(final Course course) {

@@ -1,11 +1,14 @@
 package com.ae.teachercatalog.dao;
 
 import com.ae.teachercatalog.model.SocialMedia;
-import com.ae.teachercatalog.model.Teacher;
 import com.ae.teachercatalog.model.TeacherSocialMedia;
+import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Repository
+@Transactional
 public class SocialMediaDaoImpl extends AbstractSession implements SocialMediaDao {
 
     @Override
@@ -35,7 +38,8 @@ public class SocialMediaDaoImpl extends AbstractSession implements SocialMediaDa
     public SocialMedia findSocialMediaByName(final String name) {
         return (SocialMedia) getSession()
                 .createQuery("from SocialMedia where name = :name")
-                .setParameter("name", name);
+                .setParameter("name", name)
+                .uniqueResult();
     }
 
     @Override
